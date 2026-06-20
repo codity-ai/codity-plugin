@@ -1,0 +1,23 @@
+{
+  "name": "codity",
+  "version": "1.0.0",
+  "description": "AI-powered code review, security scanning, and multi-VCS PR triage, powered by the Codity CLI.",
+  "author": {
+    "name": "Codity",
+    "url": "https://codity.ai"
+  },
+  "homepage": "https://codity.ai",
+  "repository": "https://github.com/codity-ai/codity-plugin",
+  "license": "MIT",
+  "keywords": [
+    "code-review",
+    "security",
+    "sast",
+    "sca",
+    "pull-request",
+    "github",
+    "gitlab",
+    "bitbucket",
+    "azure-devops"
+  ]
+}

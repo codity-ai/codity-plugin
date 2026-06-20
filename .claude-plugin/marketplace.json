@@ -1,0 +1,20 @@
+{
+  "name": "codity",
+  "owner": {
+    "name": "Codity",
+    "url": "https://codity.ai"
+  },
+  "metadata": {
+    "version": "1.0.0",
+    "description": "Codity — AI code review and security scanning for Claude Code."
+  },
+  "plugins": [
+    {
+      "name": "codity",
+      "source": "./plugins/codity",
+      "description": "AI-powered code review, multi-VCS PR triage, and security/quality scanning, driven by the Codity CLI.",
+      "category": "development",
+      "tags": ["code-review", "security", "pull-request", "ci"]
+    }
+  ]
+}
