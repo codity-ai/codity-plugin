@@ -1,0 +1,58 @@
+schema_version: "1.0"
+name: code-review-finds-bugs
+description: >-
+  The code-review skill on a repo with staged changes carrying five planted
+  defects. Checks that the skill fires, invokes the CLI the way the contract
+  requires, and reports what Codity actually returned.
+execution:
+  max_turns: 40
+  timeout_seconds: 1200
+  allowed_tools: [Bash, Read, Edit, Glob, Grep, Skill]
+  scaffold_script: |
+    set -e
+    # scaffold_script runs in the sandbox's fake HOME; the agent runs in HOME/cwd.
+    # Build the fixture where the agent will actually be.
+    [ -d cwd ] && cd cwd
+    git init -q -b main .
+    git config user.email eval@codity.test
+    git config user.name "codity eval"
+    mkdir -p src
+    printf '# Payments service\n' > README.md
+    git add -A && git commit -qm "initial"
+
+    cat > src/db.py <<'PY'
+    def find_merchant(conn, merchant_id):
+        query = "SELECT * FROM merchants WHERE id = '" + merchant_id + "'"
+        return conn.execute(query).fetchone()
+    PY
+
+    cat > src/auth.py <<'PY'
+    import hashlib
+
+
+    def settlement_token(merchant_id, secret):
+        return hashlib.md5(f"{merchant_id}{secret}".encode()).hexdigest()
+
+
+    def is_admin(user):
+        if not user.get("is_admin"):
+            return True
+        return False
+    PY
+
+    cat > src/files.py <<'PY'
+    import os
+
+
+    def export_statement(base_dir, filename):
+        with open(os.path.join(base_dir, filename)) as fh:
+            return fh.read()
+
+
+    def blended_rate(rates):
+        return sum(rates) / len(rates)
+    PY
+
+    git add -A
+  prompt: |
+    Review my staged changes with Codity and tell me what it found.

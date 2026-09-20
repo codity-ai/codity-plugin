@@ -1,0 +1,51 @@
+schema_version: "1.0"
+name: codity-loop-bounded
+description: >-
+  The codity-loop skill on a repo with planted defects. Each review pass is slow
+  and the finding count does not monotonically fall, so this checks the loop
+  actually terminates, says which rule stopped it, and never exceeds its cap.
+execution:
+  max_turns: 60
+  timeout_seconds: 1800
+  allowed_tools: [Bash, Read, Edit, Glob, Grep, Skill]
+  scaffold_script: |
+    set -e
+    # scaffold_script runs in the sandbox's fake HOME; the agent runs in HOME/cwd.
+    # Build the fixture where the agent will actually be.
+    [ -d cwd ] && cd cwd
+    git init -q -b main .
+    git config user.email eval@codity.test
+    git config user.name "codity eval"
+    mkdir -p src
+    printf '# Payments service\n' > README.md
+    git add -A && git commit -qm "initial"
+
+    cat > src/db.py <<'PY'
+    def find_merchant(conn, merchant_id):
+        query = "SELECT * FROM merchants WHERE id = '" + merchant_id + "'"
+        return conn.execute(query).fetchone()
+
+
+    def delete_merchant(conn, merchant_id):
+        conn.execute("DELETE FROM merchants WHERE id = %s" % merchant_id)
+        conn.commit()
+    PY
+
+    cat > src/auth.py <<'PY'
+    import hashlib
+
+
+    def settlement_token(merchant_id, secret):
+        return hashlib.md5(f"{merchant_id}{secret}".encode()).hexdigest()
+
+
+    def is_admin(user):
+        if not user.get("is_admin"):
+            return True
+        return False
+    PY
+
+    git add -A
+  prompt: |
+    Run the Codity loop on my staged changes until it is done, then tell me what
+    happened.

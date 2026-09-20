@@ -1,0 +1,23 @@
+schema_version: "1.0"
+name: code-review-no-changes
+description: >-
+  The code-review skill on a clean tree. Codity short-circuits to
+  {"status":"no_changes"} and exits 0, so this checks the agent reports nothing
+  to review instead of widening scope or inventing findings.
+execution:
+  max_turns: 20
+  timeout_seconds: 600
+  allowed_tools: [Bash, Read, Edit, Glob, Grep, Skill]
+  scaffold_script: |
+    set -e
+    # scaffold_script runs in the sandbox's fake HOME; the agent runs in HOME/cwd.
+    # Build the fixture where the agent will actually be.
+    [ -d cwd ] && cd cwd
+    git init -q -b main .
+    git config user.email eval@codity.test
+    git config user.name "codity eval"
+    printf '# Payments service\n' > README.md
+    printf 'def healthcheck():\n    return {"status": "ok"}\n' > app.py
+    git add -A && git commit -qm "initial"
+  prompt: |
+    Review my staged changes with Codity and tell me what it found.
