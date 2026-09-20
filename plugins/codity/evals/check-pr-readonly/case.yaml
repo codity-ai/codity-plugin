@@ -1,0 +1,23 @@
+schema_version: "1.0"
+name: check-pr-readonly
+description: >-
+  The check-pr skill against a real pull request with failing checks. Checks that
+  it gathers CI state and comments, gives a merge verdict, treats a non-zero
+  `gh pr checks` exit as the answer rather than a tool error, and edits nothing.
+execution:
+  max_turns: 30
+  timeout_seconds: 900
+  allowed_tools: [Bash, Read, Edit, Write, Glob, Grep, Skill]
+  scaffold_script: |
+    set -e
+    # scaffold_script runs in the sandbox's fake HOME; the agent runs in HOME/cwd.
+    # Build the fixture where the agent will actually be.
+    [ -d cwd ] && cd cwd
+    git init -q -b feature/settlement .
+    git config user.email eval@codity.test
+    git config user.name "codity eval"
+    git remote add origin https://github.com/DhirenMhatre/test-repo.git
+    printf '# test-repo\n' > README.md
+    git add -A && git commit -qm "initial"
+  prompt: |
+    Is pull request 259 ready to merge?
