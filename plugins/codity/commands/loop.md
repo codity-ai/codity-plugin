@@ -10,5 +10,6 @@ Use the **codity-loop** skill to run the bounded review→fix→re-review cycle
 Scope (default: local branch; pass `--pr <n>` to loop against an open PR):
 `$ARGUMENTS`
 
+Invoke the CLI as `CODITY_NO_TTY=1 codity review --full --json`.
 Exit when there are zero critical and zero high findings and no unresolved
 actionable security issues, then print the final summary.
