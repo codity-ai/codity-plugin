@@ -9,6 +9,8 @@
   "homepage": "https://codity.ai",
   "repository": "https://github.com/codity-ai/codity-plugin",
   "license": "MIT",
+  "category": "development",
+  "logo": "./assets/logo.png",
   "keywords": [
     "code-review",
     "security",
@@ -19,5 +21,7 @@
     "gitlab",
     "bitbucket",
     "azure-devops"
-  ]
+  ],
+  "skills": "./skills/",
+  "commands": []
 }

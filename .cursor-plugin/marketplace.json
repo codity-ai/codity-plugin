@@ -6,20 +6,13 @@
   },
   "metadata": {
     "version": "1.1.0",
-    "description": "Codity: AI code review and security scanning for Claude Code."
+    "description": "Codity: AI code review and security scanning for Cursor."
   },
   "plugins": [
     {
       "name": "codity",
       "source": "./plugins/codity",
       "description": "AI-powered code review, multi-VCS PR triage, and security/quality scanning, driven by the Codity CLI.",
-      "category": "development",
-      "tags": [
-        "code-review",
-        "security",
-        "pull-request",
-        "ci"
-      ],
       "version": "1.1.0",
       "author": {
         "name": "Codity",
@@ -27,7 +20,25 @@
       },
       "homepage": "https://codity.ai",
       "repository": "https://github.com/codity-ai/codity-plugin",
-      "license": "MIT"
+      "license": "MIT",
+      "category": "development",
+      "logo": "./plugins/codity/assets/logo.png",
+      "keywords": [
+        "code-review",
+        "security",
+        "sast",
+        "sca",
+        "pull-request",
+        "ci"
+      ],
+      "tags": [
+        "code-review",
+        "security",
+        "pull-request",
+        "ci"
+      ],
+      "skills": "./skills/",
+      "commands": []
     }
   ]
 }
