@@ -51,11 +51,11 @@ Pick the narrowest scope that matches the request.
 
 | User intent | Command |
 |-------------|---------|
-| Review staged changes (default) | `CODITY_NO_TTY=1 codity review --json` |
-| Review all uncommitted changes | `CODITY_NO_TTY=1 codity review --all --json` |
+| Review staged changes (the usual case) | `CODITY_NO_TTY=1 codity review --full --json` |
+| Review all uncommitted changes | `CODITY_NO_TTY=1 codity review --all --full --json` |
 | Review a branch vs. its base | `CODITY_NO_TTY=1 codity review --branch <base> --json` |
 | Review a specific commit | `CODITY_NO_TTY=1 codity review --commit <sha> --json` |
-| Full review + security + quality | `CODITY_NO_TTY=1 codity review --full --json` |
+| Quick pass, only if the user asked for one | `CODITY_NO_TTY=1 codity review --json` |
 
 Default to `--full` whenever the user is asking whether the code is safe or ready.
 The plain review pass can return an empty `comments` array on code the security
@@ -79,8 +79,11 @@ Render a concise table ordered Critical → High → Medium → Low, combining
 `comments`, `security.findings` and `quality.findings`. Include file:line and the
 message or title. Label each row by the array it came from (review, security,
 quality): `comments[].category` is empty for a local review, so do not render it
-as a column. Lead with the counts; `summary` is empty for a local review, so
-write that line yourself.
+as a column.
+
+Lead with a total you computed across all three arrays, not with `counts`, which
+would understate or hide the scanner findings. `summary` is empty for a local
+review, so write that line yourself.
 
 ## Step 5: Autonomous fix loop
 
@@ -93,9 +96,13 @@ For each actionable finding, highest severity first:
    Do not paste it blindly.
 3. Skip findings you cannot confirm and list them as "needs human review".
 
-After applying fixes, re-run the same review command and repeat until
-`counts.total` reaches 0 or only unconfirmable findings remain, to a maximum of
-3 passes. Then report what was fixed and what was deferred.
+After applying fixes, re-run the same review command and repeat until all three
+of `comments`, `security.findings` and `quality.findings` are empty of actionable
+entries, or only unconfirmable findings remain, to a maximum of 3 passes. Then
+report what was fixed and what was deferred.
+
+Do not stop on `counts.total` alone. It covers `comments` only, so it can read 0
+while a critical security finding is still open.
 
 ## Guardrails
 

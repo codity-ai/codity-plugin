@@ -92,8 +92,9 @@ A single JSON object is printed to stdout:
   the length of `comments` every time and never included the scanner findings.
   Treat `counts` as a summary of the review pass, not of the whole result.
 - **`summary` and `pr_summary` are empty for a local review.** They are populated
-  for PR reviews. Do not lead a report with them; write your own summary from
-  `counts`. `quality.summary` is a populated markdown report.
+  for PR reviews. Do not lead a report with them; write your own summary by
+  counting across `comments`, `security.findings` and `quality.findings`, not
+  from `counts`. `quality.summary` is a populated markdown report.
 - **`comments[].category` is empty for a local review.** Only
   `security.findings[].category` carries a value (`injection`, `crypto`, `auth`,
   `other`). Group `comments` by `severity`, and take the kind from which array a
@@ -104,7 +105,9 @@ A single JSON object is printed to stdout:
 - `limit_reached: true` means plan limits truncated the review. Say so, and offer
   a narrower scope.
 - LGTM-severity comments are filtered out by the CLI, so an empty `comments` array
-  with `status: "completed"` genuinely means clean.
+  means the review pass raised nothing. It does **not** mean the result is clean:
+  on a `--full` run the scanners report separately, so check `security.findings`
+  and `quality.findings` before saying anything is clean.
 - In JSON mode, warnings go to stderr. Parse stdout only.
 
 ## Errors
