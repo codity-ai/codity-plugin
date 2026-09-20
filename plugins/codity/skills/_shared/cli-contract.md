@@ -6,7 +6,9 @@ text describes it.
 
 ## Non-negotiables
 
-1. **Always prefix with `CODITY_NO_TTY=1`.** `codity` opens a full-screen
+1. **Always prefix with `CODITY_NO_TTY=1`.** (A `--no-tty` flag does the same
+   thing and is easier for a permission rule to match, but it only exists in
+   newer CLIs, so the environment variable stays the portable form.) `codity` opens a full-screen
    Bubble Tea UI whenever stdout and stdin are both terminals. An agent terminal
    often is one, and the TUI will hang the session. `CODITY_NO_TTY=1` forces the
    headless path on `review`, `scan`, `risk-analysis` and `test-gen`.
@@ -44,6 +46,7 @@ text describes it.
 | `test-gen` | **No** | Text only. |
 | `pr comments` | **No** | Human-readable list. Pass `--pr <N>` explicitly. |
 | `pr resolve` | **No** | Interactive. **Agents must not run it**. See below. |
+| `skill install` | Yes | `{"status","editors","written","skipped"}`, and an error envelope. |
 | everything else | No | n/a |
 
 ## `codity review` envelope

@@ -1,7 +1,7 @@
 ---
 description: Triage a PR: wait for CI, gather Codity + human comments, report readiness.
 argument-hint: "[<pr-number>]"
-allowed-tools: Bash(codity:*), Bash(git:*), Bash(gh:*), Bash(glab:*), Read, Grep, Glob
+allowed-tools: Bash(codity:*), Bash(CODITY_NO_TTY=1 codity:*), Bash(CODITY_NO_TTY=1 NO_COLOR=1 codity:*), Bash(git:*), Bash(gh:*), Bash(glab:*), Read, Grep, Glob
 ---
 
 Use the **check-pr** skill to triage the pull/merge request.

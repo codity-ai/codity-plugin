@@ -6,7 +6,7 @@ description: >-
   addressed, and report merge-readiness. Trigger for "check this PR", "is my PR
   ready", "review the PR feedback", or "/check-pr". Supports GitHub, GitLab,
   Bitbucket, and Azure DevOps.
-allowed-tools: Bash(codity:*), Bash(git:*), Bash(gh:*), Bash(glab:*), Read, Grep, Glob
+allowed-tools: Bash(codity:*), Bash(CODITY_NO_TTY=1 codity:*), Bash(CODITY_NO_TTY=1 NO_COLOR=1 codity:*), Bash(git:*), Bash(gh:*), Bash(glab:*), Read, Grep, Glob
 metadata:
   version: "1.1.0"
 ---

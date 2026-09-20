@@ -1,7 +1,7 @@
 ---
 description: Apply Codity's PR review suggestions with per-fix approval.
 argument-hint: "[--pr <number>]"
-allowed-tools: Bash(codity:*), Bash(git:*), Bash(gh:*), Bash(glab:*), Read, Edit, Grep, Glob
+allowed-tools: Bash(codity:*), Bash(CODITY_NO_TTY=1 codity:*), Bash(CODITY_NO_TTY=1 NO_COLOR=1 codity:*), Bash(git:*), Bash(gh:*), Bash(glab:*), Read, Edit, Grep, Glob
 ---
 
 Use the **autofix** skill to fetch Codity's comments on the current PR/MR and

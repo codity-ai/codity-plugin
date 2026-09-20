@@ -1,7 +1,7 @@
 ---
 description: Run a Codity AI code review on local changes and fix the findings.
 argument-hint: "[--full | --all | --branch <base> | --commit <sha>]"
-allowed-tools: Bash(codity:*), Bash(git:*), Read, Edit, Grep, Glob
+allowed-tools: Bash(codity:*), Bash(CODITY_NO_TTY=1 codity:*), Bash(CODITY_NO_TTY=1 NO_COLOR=1 codity:*), Bash(git:*), Read, Edit, Grep, Glob
 ---
 
 Use the **code-review** skill to review the current changes with Codity.

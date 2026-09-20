@@ -33,8 +33,9 @@ codity login
 | `codity-loop` | Iterate review, fix, re-review until no critical/high findings (max 5) |
 
 They auto-trigger from natural language ("review my code", "fix the codity
-comments", "is my PR ready"), and can be invoked explicitly as `/code-review`,
-`/autofix`, `/check-pr`, `/codity-loop`.
+comments", "is my PR ready"). Typing `/code-review`, `/autofix`, `/check-pr` or
+`/codity-loop` may also work depending on your editor version; natural language is
+the path we test.
 
 ## Slash commands (Claude Code only)
 

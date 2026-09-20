@@ -5,7 +5,7 @@ description: >-
   re-review, and repeat until there are no critical/high issues or the iteration
   cap is hit. Trigger for "codity loop", "keep fixing until clean", "iterate on
   the review", or "/codity-loop". Works locally on a branch or against an open PR.
-allowed-tools: Bash(codity:*), Bash(git:*), Bash(gh:*), Bash(glab:*), Read, Edit, Grep, Glob
+allowed-tools: Bash(codity:*), Bash(CODITY_NO_TTY=1 codity:*), Bash(CODITY_NO_TTY=1 NO_COLOR=1 codity:*), Bash(git:*), Bash(gh:*), Bash(glab:*), Read, Edit, Grep, Glob
 metadata:
   version: "1.1.0"
 ---
@@ -36,7 +36,7 @@ Full command contract, JSON envelope and error table:
 1. **Review.**
    ```bash
    CODITY_NO_TTY=1 codity review --full --json          # local, staged
-   CODITY_NO_TTY=1 codity review --branch <base> --full --json   # whole branch or open PR
+   CODITY_NO_TTY=1 codity review --branch <base> --full --json   # whole branch vs its base
    ```
 2. **Parse** the envelope: `counts`, `comments`, `security.findings`,
    `quality.findings`. If the command exits non-zero or returns

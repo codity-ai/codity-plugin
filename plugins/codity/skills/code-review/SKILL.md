@@ -6,7 +6,7 @@ description: >-
   branch changes, then drives an autonomous fix loop. Trigger when the user asks
   to "review my code", "check for bugs", "run codity", "find security issues",
   or "review this branch/PR before pushing".
-allowed-tools: Bash(codity:*), Bash(git:*), Read, Edit, Grep, Glob
+allowed-tools: Bash(codity:*), Bash(CODITY_NO_TTY=1 codity:*), Bash(CODITY_NO_TTY=1 NO_COLOR=1 codity:*), Bash(git:*), Read, Edit, Grep, Glob
 metadata:
   version: "1.1.0"
 ---

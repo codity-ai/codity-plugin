@@ -1,7 +1,7 @@
 ---
 description: Run a Codity security scan (SAST/SCA/license) on the current changes.
 argument-hint: ""
-allowed-tools: Bash(codity:*), Bash(git:*), Read, Edit, Grep, Glob
+allowed-tools: Bash(codity:*), Bash(CODITY_NO_TTY=1 codity:*), Bash(CODITY_NO_TTY=1 NO_COLOR=1 codity:*), Bash(git:*), Read, Edit, Grep, Glob
 ---
 
 Run a Codity security scan and triage the results.
@@ -15,8 +15,8 @@ Run a Codity security scan and triage the results.
    **This takes 3 to 6 minutes and prints nothing until it finishes.** Run it in
    the foreground and wait. Do not background it, do not redirect it to a file
    and end your turn, and never report that a scan "is running" as your answer:
-   the process dies with the session and the user gets an empty file. Full
-   contract in `skills/_shared/cli-contract.md`.
+   the process dies with the session and the user gets an empty file. The
+   **code-review** skill carries the full contract if you need the rest of it.
 3. Read `security.findings` and `quality.findings`, not `counts`: `counts` covers
    the `comments` array only and reads 0 even when the scanners found a critical
    issue.
