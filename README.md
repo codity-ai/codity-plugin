@@ -37,10 +37,12 @@ codity skill install --editor cursor --global # ~/.cursor/skills/
 plugins/codity/                      # the Codity plugin
 ├── .claude-plugin/plugin.json
 ├── .cursor-plugin/plugin.json       # declares "commands": [] so Cursor loads skills only
+├── .mcp.json                        # team-memory MCP server (codity-memory)
 ├── assets/logo.png
-├── commands/                        # /codity:review, :fix, :check-pr, :loop, :scan (Claude Code only)
-├── skills/                          # code-review, autofix, check-pr, codity-loop
-│   └── _shared/cli-contract.md      # canonical CLI contract, shared by all four skills
+├── scripts/memory-mcp-headers.sh    # mints the MCP token via `codity memory mcp-token`
+├── commands/                        # /codity:review, :fix, :check-pr, :loop, :scan, :remember (Claude Code only)
+├── skills/                          # code-review, autofix, check-pr, codity-loop, memory
+│   └── _shared/cli-contract.md      # canonical CLI contract, shared by all the skills
 └── README.md
 ```
 
