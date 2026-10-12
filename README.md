@@ -17,8 +17,10 @@ generation.
 .claude-plugin/marketplace.json     # marketplace manifest
 plugins/codity/                     # the Codity plugin
 ├── .claude-plugin/plugin.json
-├── commands/                       # /codity:review, :fix, :check-pr, :loop, :scan
-├── skills/                         # code-review, autofix, check-pr, codity-loop
+├── .mcp.json                       # team-memory MCP server (codity-memory)
+├── scripts/memory-mcp-headers.sh   # mints the MCP token via `codity memory mcp-token`
+├── commands/                       # /codity:review, :fix, :check-pr, :loop, :scan, :remember
+├── skills/                         # code-review, autofix, check-pr, codity-loop, memory
 └── README.md
 ```
 
