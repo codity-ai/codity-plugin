@@ -8,7 +8,7 @@ description: >-
   or "review this branch/PR before pushing".
 allowed-tools: Bash(codity:*), Bash(CODITY_NO_TTY=1 codity:*), Bash(CODITY_NO_TTY=1 NO_COLOR=1 codity:*), Bash(git:*), Read, Edit, Grep, Glob
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # Codity Code Review

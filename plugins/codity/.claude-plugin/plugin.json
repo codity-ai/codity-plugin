@@ -1,6 +1,6 @@
 {
   "name": "codity",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "AI-powered code review, security scanning, multi-VCS PR triage, and team memory, powered by the Codity CLI.",
   "author": {
     "name": "Codity",
