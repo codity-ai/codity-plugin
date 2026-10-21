@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "codity-memory": {
+      "type": "http",
+      "url": "${CODITY_INGRESS_URL:-https://ingress.codity.ai}/mcp/memory",
+      "headersHelper": "sh \"${CLAUDE_PLUGIN_ROOT}/scripts/memory-mcp-headers.sh\""
+    }
+  }
+}

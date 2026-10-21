@@ -20,7 +20,8 @@ text describes it.
    redirect it to a file and end your turn, and never report that a review "is
    running" as a final answer: the process is killed when the session ends, the
    output file is left empty, and the user gets nothing.
-4. **`--json` is not universal.** Only `review` and `usage` emit JSON. See the
+4. **`--json` is not universal.** Only `review`, `usage` and most `memory`
+   subcommands emit JSON. See the
    table below.
 5. **Neither the exit code nor `counts` is the verdict.** `codity review` exits 0
    even with critical findings, so never judge from `$?`. And `counts` summarises
@@ -46,6 +47,7 @@ text describes it.
 | `test-gen` | **No** | Text only. |
 | `pr comments` | **No** | Human-readable list. Pass `--pr <N>` explicitly. |
 | `pr resolve` | **No** | Interactive. **Agents must not run it**. See below. |
+| `memory search` / `list` / `show` / `add` / `notebook` / `upload` / `mcp-token` | Yes | Team memory; see the **memory** skill. `memory forget` / `restore` print text. |
 | `skill install` | Yes | `{"status","editors","written","skipped"}`, and an error envelope. |
 | everything else | No | n/a |
 
