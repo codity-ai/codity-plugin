@@ -2,7 +2,7 @@
 name: code-review
 description: >-
   AI-powered local code review using the Codity CLI. Finds bugs, security
-  vulnerabilities (SAST/SCA/license), and quality risks in staged, committed, or
+  vulnerabilities (changed-code security and introduced-dependency vulnerabilities), and quality risks in staged, committed, or
   branch changes, then drives an autonomous fix loop. Trigger when the user asks
   to "review my code", "check for bugs", "run codity", "find security issues",
   or "review this branch/PR before pushing".
@@ -108,3 +108,5 @@ while a critical security finding is still open.
 
 - Never read or echo `.env`, credentials, tokens or SSH keys.
 - Never commit or push unless the user explicitly asks.
+
+Full repository audits and license reports are available only in [dashboard Security](https://dashboard.codity.ai/security). Review checks never fall back to a repository audit. Missing before/after dependency evidence means incomplete coverage, not a clean result.

@@ -45,7 +45,7 @@ the path we test.
 | `/codity:fix` | Runs the `autofix` skill |
 | `/codity:check-pr` | Runs the `check-pr` skill |
 | `/codity:loop` | Runs the `codity-loop` skill |
-| `/codity:scan` | Security scan (SAST/SCA/license) and triage |
+| `/codity:scan` | Changed-code security and introduced-dependency triage |
 | `/codity:remember` | Save a team memory for this repo (`codity memory add`) |
 
 ## How the skills talk to the CLI
@@ -100,7 +100,7 @@ Check the connection with `/mcp` in Claude Code.
 ## Why it goes further than CodeRabbit / Greptile
 
 - **One-pass full review**: `codity review --full --json` returns bug review,
-  security (SAST/SCA/license) and code-quality findings together, not as separate
+  changed-code security and introduced-dependency and code-quality findings together, not as separate
   tools and separate quota charges.
 - **Four VCS providers**: GitHub, GitLab, Bitbucket, and Azure DevOps.
 - **A stable JSON contract** for review, so the skills parse an envelope instead
